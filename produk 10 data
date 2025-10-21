@@ -1,0 +1,12 @@
+-- DATA PRODUK
+INSERT INTO Produk (ProdukID, NamaProduk, HargaJual, HargaBeli, KategoriID) VALUES
+('PRD01', 'Produk 1', 644259, 495584, 'KAT02'),
+('PRD02', 'Produk 2', 585864, 450665, 'KAT08'),
+('PRD03', 'Produk 3', 147421, 113401, 'KAT10'),
+('PRD04', 'Produk 4', 517964, 398434, 'KAT10'),
+('PRD05', 'Produk 5', 425051, 326963, 'KAT06'),
+('PRD06', 'Produk 6', 465254, 357888, 'KAT06'),
+('PRD07', 'Produk 7', 500223, 384787, 'KAT08'),
+('PRD08', 'Produk 8', 383731, 295178, 'KAT05'),
+('PRD09', 'Produk 9', 506014, 389242, 'KAT05'),
+('PRD10', 'Produk 10', 349198, 268614, 'KAT10');
