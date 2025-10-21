@@ -1,0 +1,12 @@
+-- DATA TRANSAKSI PEMBELIAN (10 data)
+INSERT INTO Transaksi_Pembelian (TransaksiBeliID, Tanggal, SupplierID, KaryawanID) VALUES
+('TRB01', '2024-05-30', 'SUP01', 'KRY03'),
+('TRB02', '2023-07-05', 'SUP07', 'KRY04'),
+('TRB03', '2023-01-13', 'SUP01', 'KRY06'),
+('TRB04', '2023-08-07', 'SUP08', 'KRY08'),
+('TRB05', '2024-04-15', 'SUP07', 'KRY02'),
+('TRB06', '2024-05-22', 'SUP04', 'KRY05'),
+('TRB07', '2024-10-27', 'SUP04', 'KRY06'),
+('TRB08', '2024-01-30', 'SUP06', 'KRY06'),
+('TRB09', '2024-01-19', 'SUP05', 'KRY09'),
+('TRB10', '2023-02-20', 'SUP02', 'KRY04');
