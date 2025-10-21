@@ -1,0 +1,12 @@
+-- DATA DETAIL TRANSAKSI PENJUALAN (10 data detail unik)
+INSERT INTO DetailTrx_Jual (TransaksiJualID, ProdukID, Jumlah, Subtotal) VALUES
+('TRJ04', 'PRD09', 1, 86148),
+('TRJ02', 'PRD09', 5, 2949340),
+('TRJ01', 'PRD05', 5, 2729905),
+('TRJ09', 'PRD07', 5, 836190),
+('TRJ07', 'PRD02', 4, 503888),
+('TRJ05', 'PRD08', 1, 119948),
+('TRJ01', 'PRD01', 2, 896948),
+('TRJ07', 'PRD10', 4, 257028),
+('TRJ10', 'PRD02', 5, 1075015),
+('TRJ02', 'PRD04', 5, 608800);
