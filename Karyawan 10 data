@@ -1,0 +1,12 @@
+-- DATA KARYAWAN
+INSERT INTO Karyawan (KaryawanID, Nama, Alamat, NoTelp, Jabatan) VALUES
+('KRY01', 'Kartika Kalsum', 'Jl. Mayjen Sungkono No. 341, Yogyakarta', '081998436984', 'Gudang'),
+('KRY02', 'Prilly Indah', 'Jl. Ngagel No. 95, Sidoarjo', '081960881730', 'Supervisor'),
+('KRY03', 'Prilly Handayani', 'Jl. Mayjen Sungkono No. 152, Bandung', '081195498602', 'Admin'),
+('KRY04', 'Yoga Nurlaila', 'Jl. Basuki Rahmat No. 461, Gresik', '081757286312', 'Kasir'),
+('KRY05', 'Budi Santoso', 'Jl. Ngagel No. 305, Sidoarjo', '081879280782', 'Sales'),
+('KRY06', 'Dian Lubis', 'Jl. Pahlawan No. 79, Malang', '081769891299', 'Kasir'),
+('KRY07', 'Tika Nugroho', 'Jl. Kenjeran No. 3, Jakarta', '081619384543', 'Admin'),
+('KRY08', 'Lina Handayani', 'Jl. Raya Darmo No. 362, Bandung', '081232846326', 'Sales'),
+('KRY09', 'Qori Sari', 'Jl. Rungkut No. 452, Yogyakarta', '081550295402', 'Sales'),
+('KRY10', 'Kartika Kalsum', 'Jl. Tunjungan No. 371, Sidoarjo', '081815684432', 'Manager');
