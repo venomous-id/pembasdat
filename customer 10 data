@@ -1,0 +1,12 @@
+-- DATA CUSTOMER
+INSERT INTO Customer (CustomerID, Nama, Alamat, JenisKelamin) VALUES
+('CST01', 'Oki Mulyadi', 'Jl. Tandes No. 143, Gresik', 'P'),
+('CST02', 'Hadi Hidayat', 'Jl. Raya Lontar No. 122, Surabaya', 'L'),
+('CST03', 'Prilly Nurlaila', 'Jl. Tenggilis No. 285, Mojokerto', 'P'),
+('CST04', 'Wati Pratama', 'Jl. Dukuh Kupang No. 50, Mojokerto', 'L'),
+('CST05', 'Surya Nugroho', 'Jl. Klampis No. 429, Surabaya', 'P'),
+('CST06', 'Rizki Permata', 'Jl. Tenggilis No. 299, Gresik', 'L'),
+('CST07', 'Venna Setiawan', 'Jl. Tunjungan No. 19, Surabaya', 'P'),
+('CST08', 'Indah Mahardika', 'Jl. Menganti No. 157, Sidoarjo', 'L'),
+('CST09', 'Qadri Hermawan', 'Jl. Gubeng No. 121, Bangkalan', 'P'),
+('CST10', 'Citra Cahyani', 'Jl. Wonokromo No. 163, Mojokerto', 'L');
