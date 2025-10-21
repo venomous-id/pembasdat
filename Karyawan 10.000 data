@@ -1,4 +1,4 @@
--- DATA KARYAWAN (10000 data - KRY0001 sampai KRY10000)
+-- DATA KARYAWAN
 INSERT INTO Karyawan (KaryawanID, Nama, Alamat, NoTelp, Jabatan) VALUES
 ('KRY00001', 'Qori Kalsum', 'Jl. Diponegoro No. 190, Surabaya', '081331799844', 'Kasir'),
 ('KRY00002', 'Venna Lestari', 'Jl. Mayjen Sungkono No. 89, Semarang', '081746186872', 'Kasir'),
