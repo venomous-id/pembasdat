@@ -1,0 +1,12 @@
+-- DATA KATEGORI PRODUK (10 data unik)
+INSERT INTO KategoriProduk (KategoriID, NamaKategori) VALUES
+('KAT01', 'Kategori 1'),
+('KAT02', 'Kategori 2'),
+('KAT03', 'Kategori 3'),
+('KAT04', 'Kategori 4'),
+('KAT05', 'Kategori 5'),
+('KAT06', 'Kategori 6'),
+('KAT07', 'Kategori 7'),
+('KAT08', 'Kategori 8'),
+('KAT09', 'Kategori 9'),
+('KAT10', 'Kategori 10');
