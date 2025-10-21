@@ -1,4 +1,4 @@
--- DATA CUSTOMER (10.000 data - CST00001 sampai CST10000)
+-- DATA CUSTOMER
 INSERT INTO Customer (CustomerID, Nama, Alamat, JenisKelamin) VALUES
 ('CST00001', 'Gita Saputra', 'Jl. Semolowaru No. 161, Mojokerto', 'P'),
 ('CST00002', 'Andi Mahardika', 'Jl. Kalirungkut No. 449, Bangkalan', 'L'),
