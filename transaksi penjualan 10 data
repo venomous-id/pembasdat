@@ -1,0 +1,12 @@
+-- DATA TRANSAKSI PENJUALAN (10 data)
+INSERT INTO Transaksi_Penjualan (TransaksiJualID, Tanggal, CustomerID, KaryawanID) VALUES
+('TRJ01', '2024-02-29', 'CST06', 'KRY06'),
+('TRJ02', '2023-01-23', 'CST02', 'KRY06'),
+('TRJ03', '2024-02-21', 'CST01', 'KRY05'),
+('TRJ04', '2023-03-26', 'CST02', 'KRY06'),
+('TRJ05', '2023-05-13', 'CST02', 'KRY06'),
+('TRJ06', '2023-12-07', 'CST10', 'KRY06'),
+('TRJ07', '2024-03-27', 'CST01', 'KRY05'),
+('TRJ08', '2023-09-08', 'CST03', 'KRY08'),
+('TRJ09', '2023-06-11', 'CST09', 'KRY01'),
+('TRJ10', '2024-01-31', 'CST03', 'KRY05');
