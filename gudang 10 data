@@ -1,0 +1,12 @@
+-- DATA GUDANG
+INSERT INTO Gudang (GudangID, NamaGudang, Lokasi) VALUES
+('GUD01', 'Gudang 1', 'Jl. Veteran No. 143, Sidoarjo'),
+('GUD02', 'Gudang 2', 'Jl. Kartini No. 492, Surabaya'),
+('GUD03', 'Gudang 3', 'Jl. Rungkut No. 124, Malang'),
+('GUD04', 'Gudang 4', 'Jl. Merdeka No. 97, Malang'),
+('GUD05', 'Gudang 5', 'Jl. Kenjeran No. 17, Malang'),
+('GUD06', 'Gudang 6', 'Jl. Diponegoro No. 31, Bandung'),
+('GUD07', 'Gudang 7', 'Jl. Pahlawan No. 265, Bandung'),
+('GUD08', 'Gudang 8', 'Jl. Ahmad Yani No. 452, Bandung'),
+('GUD09', 'Gudang 9', 'Jl. Mayjen Sungkono No. 243, Surabaya'),
+('GUD10', 'Gudang 10', 'Jl. Ahmad Yani No. 296, Yogyakarta');
