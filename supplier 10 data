@@ -1,0 +1,12 @@
+-- DATA SUPPLIER
+INSERT INTO Supplier (SupplierID, NamaSupplier, Alamat, NoTelp) VALUES
+('SUP01', 'Supplier 1', 'Jl. Kartini No. 328, Jakarta', '021-1763564'),
+('SUP02', 'Supplier 2', 'Jl. Pahlawan No. 473, Jakarta', '021-7210376'),
+('SUP03', 'Supplier 3', 'Jl. Basuki Rahmat No. 32, Malang', '021-6869463'),
+('SUP04', 'Supplier 4', 'Jl. Mayjen Sungkono No. 111, Malang', '021-2223841'),
+('SUP05', 'Supplier 5', 'Jl. Raya Darmo No. 244, Sidoarjo', '021-3517780'),
+('SUP06', 'Supplier 6', 'Jl. Imam Bonjol No. 346, Malang', '021-3437815'),
+('SUP07', 'Supplier 7', 'Jl. Veteran No. 175, Jakarta', '021-7061712'),
+('SUP08', 'Supplier 8', 'Jl. Imam Bonjol No. 234, Sidoarjo', '021-3513846'),
+('SUP09', 'Supplier 9', 'Jl. Basuki Rahmat No. 199, Yogyakarta', '021-1465995'),
+('SUP10', 'Supplier 10', 'Jl. Raya Darmo No. 208, Jakarta', '021-7371512');
