@@ -1,0 +1,12 @@
+-- DATA DISIMPAN (10 data relasi unik)
+INSERT INTO DISIMPAN (ProdukID, GudangID, Jumlah) VALUES
+('PRD03', 'GUD09', 68),
+('PRD05', 'GUD06', 940),
+('PRD03', 'GUD03', 788),
+('PRD01', 'GUD07', 360),
+('PRD07', 'GUD06', 343),
+('PRD01', 'GUD02', 936),
+('PRD04', 'GUD02', 137),
+('PRD09', 'GUD06', 610),
+('PRD09', 'GUD07', 476),
+('PRD10', 'GUD03', 959);
