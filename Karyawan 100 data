@@ -1,4 +1,4 @@
--- DATA KARYAWAN (100 data - KRY001 sampai KRY0100)
+-- DATA KARYAWAN
 INSERT INTO Karyawan (KaryawanID, Nama, Alamat, NoTelp, Jabatan) VALUES
 ('KRY001', 'Mikha Anggraini', 'Jl. Pahlawan No. 170, Surabaya', '081794022474', 'Gudang'),
 ('KRY002', 'Widi Lubis', 'Jl. Pahlawan No. 321, Surabaya', '081483296529', 'Sales'),
