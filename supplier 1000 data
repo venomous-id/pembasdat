@@ -1,4 +1,4 @@
--- DATA SUPPLIER (1000 data unik - SUP00001 sampai SUP01000)
+-- DATA SUPPLIER
 INSERT INTO Supplier (SupplierID, NamaSupplier, Alamat, NoTelp) VALUES
 ('SUP0001', 'Supplier 1', 'Jl. Pahlawan No. 310, Malang', '021-9097807'),
 ('SUP0002', 'Supplier 2', 'Jl. Kenjeran No. 244, Bandung', '021-8401275'),
