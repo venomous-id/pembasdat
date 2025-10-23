@@ -1,0 +1,206 @@
+-- 1. Tampilkan nama customer yang melakukan pembelian paling banyak sepanjang waktu.
+SELECT 
+    c.Nama AS NamaCustomer,
+    SUM(d.Jumlah) AS TotalProdukDibeli
+FROM Customer c
+JOIN Transaksi_Penjualan t ON c.CustomerID = t.CustomerID
+JOIN DetailTrx_Jual d ON t.TransaksiJualID = d.TransaksiJualID
+GROUP BY c.CustomerID, c.Nama
+HAVING SUM(d.Jumlah) = (
+    SELECT MAX(TotalPembelian)
+    FROM (
+        SELECT SUM(d2.Jumlah) AS TotalPembelian
+        FROM Transaksi_Penjualan t2
+        JOIN DetailTrx_Jual d2 ON t2.TransaksiJualID = d2.TransaksiJualID
+        GROUP BY t2.CustomerID
+    ) AS Subquery
+);
+-- 0.015sec/0.000
+
+-- 2. Tampilkan produk dengan harga di atas rata-rata harga semua produk.
+SELECT 
+    NamaProduk, 
+    HargaJual
+FROM Produk
+WHERE HargaJual > (
+    SELECT AVG(HargaJual)
+    FROM Produk
+);
+-- 0.000/0.000
+
+-- 3. Tampilkan produk dengan stok paling sedikit di antara seluruh gudang.
+SELECT 
+    p.NamaProduk, 
+    SUM(d.Jumlah) AS TotalStok
+FROM Produk p
+JOIN Disimpan d ON p.ProdukID = d.ProdukID
+GROUP BY p.ProdukID, p.NamaProduk
+HAVING SUM(d.Jumlah) = (
+    SELECT MIN(TotalStok)
+    FROM (
+        SELECT SUM(Jumlah) AS TotalStok
+        FROM Disimpan
+        GROUP BY ProdukID
+    ) AS Subquery
+);
+-- 0.015/0.000
+
+-- 4. Tampilkan supplier yang paling sering melakukan pengiriman barang ke toko.
+SELECT s.NamaSupplier, COUNT(t.TransaksiBeliID) AS JumlahPengiriman
+FROM Supplier s
+JOIN Transaksi_Pembelian t ON s.SupplierID = t.SupplierID
+GROUP BY s.SupplierID, s.NamaSupplier
+HAVING COUNT(t.TransaksiBeliID) = (
+    SELECT MAX(Jumlah)
+    FROM (
+        SELECT COUNT(TransaksiBeliID) AS Jumlah
+        FROM Transaksi_Pembelian
+        GROUP BY SupplierID
+    ) AS Subquery
+);
+-- 0.015/0.000
+
+-- 5. Tampilkan customer yang memiliki total pembelian tertinggi dalam satu bulan terakhir.
+SELECT c.Nama, SUM(d.Subtotal) AS TotalPembelian
+FROM Customer c
+JOIN Transaksi_Penjualan t ON c.CustomerID = t.CustomerID
+JOIN DetailTrx_Jual d ON t.TransaksiJualID = d.TransaksiJualID
+WHERE MONTH(t.Tanggal) = MONTH(CURDATE()) - 1
+GROUP BY c.CustomerID, c.Nama
+HAVING SUM(d.Subtotal) = (
+    SELECT MAX(Total)
+    FROM (
+        SELECT SUM(d2.Subtotal) AS Total
+        FROM Transaksi_Penjualan t2
+        JOIN DetailTrx_Jual d2 ON t2.TransaksiJualID = d2.TransaksiJualID
+        WHERE MONTH(t2.Tanggal) = MONTH(CURDATE()) - 1
+        GROUP BY t2.CustomerID
+    ) AS Subquery
+);
+-- 0.016/0.000
+
+-- 6. Tampilkan produk yang menyumbang total omzet terbesar berdasarkan transaksi penjualan.
+SELECT p.NamaProduk, SUM(d.Subtotal) AS TotalOmzet
+FROM Produk p
+JOIN DetailTrx_Jual d ON p.ProdukID = d.ProdukID
+GROUP BY p.ProdukID, p.NamaProduk
+HAVING SUM(d.Subtotal) = (
+    SELECT MAX(Omzet)
+    FROM (
+        SELECT SUM(Subtotal) AS Omzet
+        FROM DetailTrx_Jual
+        GROUP BY ProdukID
+    ) AS Subquery
+);
+-- 0.016/0.000
+
+-- 7. Tampilkan kasir yang melayani transaksi paling banyak selama periode tertentu.
+SELECT k.Nama, COUNT(t.TransaksiJualID) AS JumlahTransaksi
+FROM Karyawan k
+JOIN Transaksi_Penjualan t ON k.KaryawanID = t.KaryawanID
+WHERE t.Tanggal BETWEEN '2023-10-01' AND '2023-10-31'
+GROUP BY k.KaryawanID, k.Nama
+HAVING COUNT(t.TransaksiJualID) = (
+    SELECT MAX(Jumlah)
+    FROM (
+        SELECT COUNT(TransaksiJualID) AS Jumlah
+        FROM Transaksi_Penjualan
+        WHERE Tanggal BETWEEN '2023-10-01' AND '2023-10-31'
+        GROUP BY KaryawanID
+    ) AS Subquery
+);
+-- 0.000/0.000
+
+-- 8. Tampilkan produk yang tidak pernah dibeli ulang dari supplier sejak pertama kali dibeli.
+SELECT p.NamaProduk
+FROM Produk p
+WHERE p.ProdukID IN (
+    SELECT ProdukID
+    FROM DetailTrx_Beli
+    GROUP BY ProdukID
+    HAVING COUNT(DISTINCT TransaksiBeliID) = 1
+);
+-- 0.000 sec / 0.000 sec
+
+
+-- 9. Tampilkan customer yang belum pernah bertransaksi lagi setelah pembelian pertamanya.
+SELECT c.Nama
+FROM Customer c
+WHERE c.CustomerID IN (
+    SELECT CustomerID
+    FROM Transaksi_Penjualan
+    GROUP BY CustomerID
+    HAVING COUNT(TransaksiJualID) = 1
+);
+-- 0.000 sec / 0.000 sec
+
+
+-- 10. Tampilkan gudang yang menyimpan lebih dari 10 jenis produk berbeda.
+SELECT g.NamaGudang, COUNT(d.ProdukID) AS JumlahProduk
+FROM Gudang g
+JOIN Disimpan d ON g.GudangID = d.GudangID
+GROUP BY g.GudangID, g.NamaGudang
+HAVING COUNT(d.ProdukID) > 10;
+-- 0.000 sec / 0.000 sec
+
+
+-- 11. Tampilkan produk yang dibeli dari lebih dari satu supplier berbeda.
+SELECT p.NamaProduk, COUNT(DISTINCT t.SupplierID) AS JumlahSupplier
+FROM Produk p
+JOIN DetailTrx_Beli d ON p.ProdukID = d.ProdukID
+JOIN Transaksi_Pembelian t ON d.TransaksiBeliID = t.TransaksiBeliID
+GROUP BY p.ProdukID, p.NamaProduk
+HAVING COUNT(DISTINCT t.SupplierID) > 1;
+-- 0.016 sec / 0.000 sec
+
+
+-- 12. Tampilkan supplier yang menjual produk dengan harga beli di atas rata-rata harga beli semua produk.
+SELECT DISTINCT s.NamaSupplier
+FROM Supplier s
+JOIN Transaksi_Pembelian t ON s.SupplierID = t.SupplierID
+JOIN DetailTrx_Beli d ON t.TransaksiBeliID = d.TransaksiBeliID
+JOIN Produk p ON d.ProdukID = p.ProdukID
+WHERE p.HargaBeli > (
+    SELECT AVG(HargaBeli) FROM Produk
+);
+-- 0.015 sec / 0.000 sec
+
+
+-- 13. Tampilkan rata-rata total transaksi penjualan untuk setiap karyawan, lalu tampilkan karyawan dengan total di atas rata-rata tersebut.
+SELECT k.Nama, SUM(d.Subtotal) AS TotalPenjualan
+FROM Karyawan k
+JOIN Transaksi_Penjualan t ON k.KaryawanID = t.KaryawanID
+JOIN DetailTrx_Jual d ON t.TransaksiJualID = d.TransaksiJualID
+GROUP BY k.KaryawanID, k.Nama
+HAVING SUM(d.Subtotal) > (
+    SELECT AVG(Total)
+    FROM (
+        SELECT SUM(d2.Subtotal) AS Total
+        FROM Transaksi_Penjualan t2
+        JOIN DetailTrx_Jual d2 ON t2.TransaksiJualID = d2.TransaksiJualID
+        GROUP BY t2.KaryawanID
+    ) AS Subquery
+);
+-- 0.015 sec / 0.000 sec
+
+-- 14. Tampilkan nama karyawan yang beralamat di Sidoarjo.
+SELECT Nama
+FROM Karyawan
+WHERE Alamat LIKE '%Sidoarjo%';
+-- 0.000 sec / 0.000 sec
+
+-- 15. Tampilkan produk yang paling sering terjual berdasarkan jumlah transaksi penjualan.
+SELECT p.NamaProduk, SUM(d.Jumlah) AS TotalTerjual
+FROM Produk p
+JOIN DetailTrx_Jual d ON p.ProdukID = d.ProdukID
+GROUP BY p.ProdukID, p.NamaProduk
+HAVING SUM(d.Jumlah) = (
+    SELECT MAX(Total)
+    FROM (
+        SELECT SUM(Jumlah) AS Total
+        FROM DetailTrx_Jual
+        GROUP BY ProdukID
+    ) AS Subquery
+);
+-- 0.031 sec / 0.000 sec
+
