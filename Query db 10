@@ -15,7 +15,7 @@ HAVING SUM(d.Jumlah) = (
         GROUP BY t2.CustomerID
     ) AS Subquery
 );
--- 491 ms
+-- 0,491 ms
 
 -- 2. Tampilkan produk dengan harga di atas rata-rata harga semua produk.
 SELECT 
@@ -26,7 +26,7 @@ WHERE HargaJual > (
     SELECT AVG(HargaJual)
     FROM Produk
 );
--- 462 ms
+-- 0,462 ms
 
 -- 3. Tampilkan produk dengan stok paling sedikit di antara seluruh gudang.
 SELECT 
@@ -43,7 +43,7 @@ HAVING SUM(d.Jumlah) = (
         GROUP BY ProdukID
     ) AS Subquery
 );
--- 182 ms
+-- 0,182 ms
 
 -- 4. Tampilkan supplier yang paling sering melakukan pengiriman barang ke toko.
 SELECT s.NamaSupplier, COUNT(t.TransaksiBeliID) AS JumlahPengiriman
@@ -57,7 +57,7 @@ HAVING COUNT(t.TransaksiBeliID) = (
         FROM Transaksi_Pembelian
         GROUP BY SupplierID
     ) AS Subquery
-); -- 318 ms
+); -- 0,318 ms
 
 -- 5. Tampilkan customer yang memiliki total pembelian tertinggi dalam satu bulan terakhir.
 SELECT c.Nama, SUM(d.Subtotal) AS TotalPembelian
@@ -76,7 +76,7 @@ HAVING SUM(d.Subtotal) = (
         GROUP BY t2.CustomerID
     ) AS Subquery
 );
- -- 129 ms
+ -- 0,129 ms
 
 -- 6. Tampilkan produk yang menyumbang total omzet terbesar berdasarkan transaksi penjualan.
 SELECT p.NamaProduk, SUM(d.Subtotal) AS TotalOmzet
@@ -90,7 +90,7 @@ HAVING SUM(d.Subtotal) = (
         FROM DetailTrx_Jual
         GROUP BY ProdukID
     ) AS Subquery
-); -- 526 ms
+); -- 0,526 ms
 
 -- 7. Tampilkan kasir yang melayani transaksi paling banyak selama periode tertentu.
 SELECT k.Nama, COUNT(t.TransaksiJualID) AS JumlahTransaksi
@@ -106,7 +106,7 @@ HAVING COUNT(t.TransaksiJualID) = (
         WHERE Tanggal BETWEEN '2023-10-01' AND '2023-10-31'
         GROUP BY KaryawanID
     ) AS Subquery
-); -- 200 ms
+); -- 0,200 ms
 
 -- 8. Tampilkan produk yang tidak pernah dibeli ulang dari supplier sejak pertama kali dibeli.
 SELECT p.NamaProduk
@@ -116,7 +116,7 @@ WHERE p.ProdukID IN (
     FROM DetailTrx_Beli
     GROUP BY ProdukID
     HAVING COUNT(DISTINCT TransaksiBeliID) = 1
-); -- 165 ms
+); -- 0,165 ms
 
 -- 9. Tampilkan customer yang belum pernah bertransaksi lagi setelah pembelian pertamanya.
 SELECT c.Nama
@@ -126,7 +126,7 @@ WHERE c.CustomerID IN (
     FROM Transaksi_Penjualan
     GROUP BY CustomerID
     HAVING COUNT(TransaksiJualID) = 1
-); -- 422 ms
+); -- 0,422 ms
 
 -- 10. Tampilkan gudang yang menyimpan lebih dari 10 jenis produk berbeda.
 SELECT g.NamaGudang, COUNT(d.ProdukID) AS JumlahProduk
@@ -134,7 +134,7 @@ FROM Gudang g
 JOIN Disimpan d ON g.GudangID = d.GudangID
 GROUP BY g.GudangID, g.NamaGudang
 HAVING COUNT(d.ProdukID) > 10;
--- 190 ms
+-- 0,190 ms
 
 -- 11. Tampilkan produk yang dibeli dari lebih dari satu supplier berbeda.
 SELECT p.NamaProduk, COUNT(DISTINCT t.SupplierID) AS JumlahSupplier
@@ -143,7 +143,7 @@ JOIN DetailTrx_Beli d ON p.ProdukID = d.ProdukID
 JOIN Transaksi_Pembelian t ON d.TransaksiBeliID = t.TransaksiBeliID
 GROUP BY p.ProdukID, p.NamaProduk
 HAVING COUNT(DISTINCT t.SupplierID) > 1;
--- 135 ms
+-- 0,135 ms
 
 -- 12. Tampilkan supplier yang menjual produk dengan harga beli di atas rata-rata harga beli semua produk.
 SELECT DISTINCT s.NamaSupplier
@@ -153,7 +153,7 @@ JOIN DetailTrx_Beli d ON t.TransaksiBeliID = d.TransaksiBeliID
 JOIN Produk p ON d.ProdukID = p.ProdukID
 WHERE p.HargaBeli > (
     SELECT AVG(HargaBeli) FROM Produk
-); -- 140 ms
+); -- 0,140 ms
 
 -- 13. Tampilkan rata-rata total transaksi penjualan untuk setiap karyawan, lalu tampilkan karyawan dengan total di atas rata-rata tersebut.
 SELECT k.Nama, SUM(d.Subtotal) AS TotalPenjualan
@@ -169,7 +169,7 @@ HAVING SUM(d.Subtotal) > (
         JOIN DetailTrx_Jual d2 ON t2.TransaksiJualID = d2.TransaksiJualID
         GROUP BY t2.KaryawanID
     ) AS Subquery
-); -- 177 ms
+); -- 0,177 ms
 
 -- 14. Tampilkan nama karyawan yang beralamat di Sidoarjo.
 SELECT Nama
@@ -188,6 +188,6 @@ HAVING SUM(d.Jumlah) = (
         FROM DetailTrx_Jual
         GROUP BY ProdukID
     ) AS Subquery
-); -- 178 ms
+); -- 0,178 ms
 
 
